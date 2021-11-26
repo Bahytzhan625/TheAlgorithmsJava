@@ -510,10 +510,10 @@ public class AES {
 		for (int i = 0; i < 4; i++) {
 			int[] row = {cells[i * 4], cells[i * 4 + 1], cells[i * 4 + 2], cells[i * 4 + 3]};
 
-			outputCells[i * 4] = MULT14[row[0]] ^ MULT11[row[1]] ^ MULT13[row[2]] ^ MULT9[row[3]];
-			outputCells[i * 4 + 1] = MULT9[row[0]] ^ MULT14[row[1]] ^ MULT11[row[2]] ^ MULT13[row[3]];
-			outputCells[i * 4 + 2] = MULT13[row[0]] ^ MULT9[row[1]] ^ MULT14[row[2]] ^ MULT11[row[3]];
-			outputCells[i * 4 + 3] = MULT11[row[0]] ^ MULT13[row[1]] ^ MULT9[row[2]] ^ MULT14[row[3]];
+			outputCells[i * 4] = MULT14[row[0]] ^ MULT1[row[1]] ^ MULT13[row[2]] ^ MULT9[row[3]];
+			outputCells[i * 4 + 1] = MULT9[row[0]] ^ MULT14[row[1]] ^ MULT1[row[2]] ^ MULT13[row[3]];
+			outputCells[i * 4 + 2] = MULT13[row[0]] ^ MULT9[row[1]] ^ MULT14[row[2]] ^ MULT1[row[3]];
+			outputCells[i * 4 + 3] = MULT1[row[0]] ^ MULT13[row[1]] ^ MULT9[row[2]] ^ MULT14[row[3]];
 		}
 		return mergeCellsIntoBlock(outputCells);
 	}
