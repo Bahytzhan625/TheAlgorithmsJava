@@ -203,6 +203,18 @@ class AdjacencyMatrixGraph {
 	 * exists and is removed
 	 */
 	public boolean removeEdge(int from, int to) {
-		if (!this.vertexDoesExist(from) || )
+		if (!this.vertexDoesExist(from) || !this.vertexDoesExist(to)) {
+			if (this.adjacencyOfEdgeDoesExist(from, to)) {
+				this.adjacency()[from][to] = AdjacencyMatrixGraph.EDGE_NONE;
+				this.adjacency()[to][from] = AdjacencyMatrixGraph.EDGE_NONE;
+				this.setNumberOfEdges(this.numberOfEdges() - 1);
+				return true;
+			}
+		}
+		return false;
 	}
+
+	/**
+	 *
+	 */
 }
