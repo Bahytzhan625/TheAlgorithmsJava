@@ -98,6 +98,8 @@ public class HashMap {
 			}
 		}
 
-		private void
+		private void delete(Node n, int key) {
+
+		}
 	}
 }
