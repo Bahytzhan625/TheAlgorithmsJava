@@ -99,7 +99,52 @@ public class HashMap {
 		}
 
 		private void delete(Node n, int key) {
+			if (n.getNext().getKey() == key) {
+				if (n.getNext().getNext() == null) {
+					n.setNext(null);
+				} else {
+					n.setNext(n.getNext().getNext());
+				}
+			}
+		}
 
+		public String display() {
+			return display(first);
+		}
+
+		private String display(Node n) {
+			if (n == null) {
+				return "null";
+			} else {
+				return n.getKey() + "->" + display(n.getNext());
+			}
+		}
+
+		public boolean isEmpty() {
+			return first == null;
+		}
+	}
+
+	public static class Node {
+
+		private Node next;
+		private int key;
+
+		public Node(int key) {
+			next = null;
+			this.key = key;
+		}
+
+		public Node getNext() {
+			return next;
+		}
+
+		public int getKey() {
+			return key;
+		}
+
+		public void setNext(Node next) {
+			this.next = next;
 		}
 	}
 }
