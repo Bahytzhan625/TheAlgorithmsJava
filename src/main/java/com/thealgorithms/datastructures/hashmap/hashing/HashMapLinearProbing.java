@@ -46,6 +46,155 @@ public class HashMapLinearProbing {
 	 * @param key the desired key to be inserted in the hash map
 	 */
 	public void insertHash(int key) {
-		khvvkvk
+		Integer wrappedInt = key;
+		int hash = hashing(key);
+
+		if (isFull()) {
+			System.out.println("Hash table is full");
+			return;
+		}
+
+		for (int i = 0; i < hsize; i++) {
+			if (buckets[hash] == null || buckets[hash] == AVAILABLE) {
+				buckets[hash] = wrappedInt;
+				size++;
+				return;
+			}
+
+			if (hash + 1 < hsize) {
+				hash++;
+			} else {
+				hash = 0;
+			}
+		}
+	}
+
+	/**
+	 * deletes a key from the hash map and adds an available placeholder
+	 *
+	 * @param key the desired key to be deleted
+	 */
+	public void deleteHash(int key) {
+		Integer wrapperInt = key;
+		int hash = hashing(key);
+
+		if (isEmpty()) {
+			System.out.println("Table is empty");
+			return;
+		}
+
+		for (int i = 0; i < hsize; i++) {
+			if (buckets[hash] != null && buckets[hash].equals(wrapperInt)) {
+				buckets[hash] = AVAILABLE;
+				size--;
+				return;
+			}
+
+			if (hash + 1 < hsize) {
+				hash++;
+			} else {
+				hash = 0;
+			}
+		}
+		System.out.println("Key " + key + " not found");
+	}
+
+	/**
+	 * Displays the hash table line by line
+	 */
+	public void displayHashtable() {
+		for (int i = 0; i < hsize; i++) {
+			if (buckets[i] == null || buckets[i] == AVAILABLE) {
+				System.out.println("Bucket " + i + ": Empty");
+			} else {
+				System.out.println("Bucket " + i + ": " + buckets[i].toString());
+			}
+		}
+	}
+
+	/**
+	 * Finds the index of location based on an inputed key
+	 *
+	 * @param key the desired key to be found
+	 * @return int the index where the key is located
+	 */
+	public int findHash(int key) {
+		Integer wrapperInt = key;
+		int hash = hashing(key);
+
+		if (isEmpty()) {
+			System.out.println("Table is empty");
+			return -1;
+		}
+
+		for (int i = 0; i < hsize; i++) {
+			try {
+				if (buckets[hash].equals(wrapperInt)) {
+					buckets[hash] = AVAILABLE;
+					return hash;
+				}
+			} catch (Exception E) {
+			}
+
+			if (hash + 1 < hsize) {
+				hash++;
+			} else {
+				hash = 0;
+			}
+		}
+		System.out.println("Key " + key + " not found");
+		return -1;
+	}
+
+	private void lengthenTable() {
+		buckets = Arrays.copyOf(buckets, hsize * 2);
+		hsize *= 2;
+		System.out.println("Table size is now: " + hsize);
+	}
+
+	/**
+	 * Checks the load factor of the hash table if greater than .7,
+	 * automatically lengthens table to prevent further collisions
+	 */
+	public void checkLoadFactor() {
+		double factor = (double) size / hsize;
+		if (factor > .7) {
+			System.out.println("Load factor is " + factor + ", lengthening table");
+			lengthenTable();
+		} else {
+			System.out.println("Load factor is " + factor);
+		}
+	}
+
+	/**
+	 * isFull returns true if the hash map is full and false if not full
+	 *
+	 * @return boolean is Empty
+	 */
+	public boolean isFull() {
+		boolean response = true;
+		for (int i = 0; i < hsize; i++) {
+			if (buckets[i] == null || buckets[i] == AVAILABLE) {
+				response = false;
+				break;
+			}
+		}
+		return response;
+	}
+
+	/**
+	 * isEmpty returns true if the hash map is empty and false if not empty
+	 *
+	 * @return boolean is Empty
+	 */
+	public boolean isEmpty() {
+		boolean response = true;
+		for (int i = 0; i < hsize; i++) {
+			if (buckets[i] != null) {
+				response = false;
+				break;
+			}
+		}
+		return response;
 	}
 }
