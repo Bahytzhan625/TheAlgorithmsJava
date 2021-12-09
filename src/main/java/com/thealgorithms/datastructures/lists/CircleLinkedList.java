@@ -66,6 +66,39 @@ public class CircleLinkedList {
 	public static void main(String args[]) {
 		CircleLinkedList cl = new CircleLinkedList<Integer>();
 		cl.append(12);
+		System.out.println(cl);
+		cl.append(23);
+		System.out.println(cl);
+		cl.append(34);
+		System.out.println(cl);
+		cl.append(56);
+		System.out.println(cl);
+		cl.remove(3);
+		System.out.println(cl);
+	}
 
+	public E remove(int pos) {
+		if (pos > size || pos < 0) {
+			// catching errors
+			throw new IndexOutOfBoundsException("position cannot be greater than size or negative");
+		}
+		// we need to keep track of the element before the element we want to remove we can see why
+		// bellow.
+		Node<E> before = head;
+		for (int i = 1; i <= pos; i++) {
+			before = before.next;
+		}
+		Node<E> destroy = before.next;
+		E saved = destroy.value;
+		// assigning the next reference to the element following the element we want to remove...
+		// the last element will be assigned to the head.
+		before.next = before.next.next;
+		// scrubbing
+		if (destroy == tail) {
+			tail = before;
+		}
+		destroy = null;
+		size--;
+		return saved;
 	}
 }
