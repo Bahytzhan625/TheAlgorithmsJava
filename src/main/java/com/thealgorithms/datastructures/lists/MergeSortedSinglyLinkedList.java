@@ -8,7 +8,7 @@ public class MergeSortedSinglyLinkedList extends SinglyLinkedList {
 
 		for (int i = 2; i <= 10; i+= 2) {
 			listA.insert(i);
-			listB.insert(insert(i - 1));
+			listB.insert(i - 1);
 		}
 		assert listA.toString().equals("2->4->6->8->10");
 		assert listB.toString().equals("1->3->5->7->9");

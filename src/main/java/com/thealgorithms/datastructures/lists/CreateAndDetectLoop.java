@@ -27,7 +27,7 @@ public class CreateAndDetectLoop {
 	 * @param head head node of the linked list
 	 * @param k position of node where loop is to be created
 	 */
-	static void createLoop(Node heap, int k) {
+	static void createLoop(Node head, int k) {
 		if (head == null) {
 			return;
 		}

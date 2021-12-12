@@ -248,7 +248,7 @@ public class DoublyLinkedList {
 	/**
 	 *  Reverses the list in place
 	 *
-	 * @param l the DoublyLinkedList to reverse
+	 * l the DoublyLinkedList to reverse
 	 */
 	public void reverse() {
 		// Keep reference to the head and tail

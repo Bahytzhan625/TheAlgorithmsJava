@@ -1,6 +1,6 @@
 package main.java.com.thealgorithms.datastructures.lists;
 
-public class CircleLinkedList {
+public class CircleLinkedList<E> {
 
 	private static class Node<E> {
 

@@ -11,7 +11,7 @@ import java.util.Objects;
  * index for the next node element.
  *
  */
-public class CursorLinkedList {
+public class CursorLinkedList<T> {
 
 	private static class Node<T> {
 
